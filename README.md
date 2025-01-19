@@ -8,4 +8,8 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 3. Understanding the difference between size and scale by using one standard cube as approximately 1 meter.
 4. Theoretically talked about encapsulation, namespaces, classes and the Unity documentation.
 5. Introduction to the InputSystem namespace.
-6. TBD
+6. Use parent / child objects to sperate the concerns of functionality (scripts etc.) and looks (models). 
+7. Simple introduction to callbacks.
+8. Using the event method OnEnable().
+9. Binding multiple buttons as inputs through the new InputSystem.
+10. TBD
