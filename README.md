@@ -6,4 +6,6 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 1. Importing custom asset packages.
 2. Working with imported assets and fixing material display errors (displayed as pink).
 3. Understanding the difference between size and scale by using one standard cube as approximately 1 meter.
-4. TBD
+4. Theoretically talked about encapsulation, namespaces, classes and the Unity documentation.
+5. Introduction to the InputSystem namespace.
+6. TBD
