@@ -12,4 +12,6 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 7. Simple introduction to callbacks.
 8. Using the event method OnEnable().
 9. Binding multiple buttons as inputs through the new InputSystem.
-10. TBD
+10. Using force to move objects.
+11. Learned about artwork protection via fbx models and prefab variants.
+12. TBD 
