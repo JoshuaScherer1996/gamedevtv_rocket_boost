@@ -14,4 +14,7 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 9. Binding multiple buttons as inputs through the new InputSystem.
 10. Using force to move objects.
 11. Learned about artwork protection via fbx models and prefab variants.
-12. TBD 
+12. Using relative force.
+13. Usage of the FixedUpdate lifecycle method.
+14. Difference between relative and local positions.
+15. TBD
