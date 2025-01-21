@@ -5,8 +5,9 @@ public class Movement : MonoBehaviour
 {
     // Declaring the variables.
     [SerializeField] private InputAction thrust;
+    [SerializeField] private float thrustForce = 1000;
 
-    Rigidbody rb;
+    private Rigidbody rb;
 
     // Gets and assigns the necessary components.
     private void Start() {
@@ -24,7 +25,7 @@ public class Movement : MonoBehaviour
     {
         if (thrust.IsPressed())
         {
-            rb.AddRelativeForce();
+            rb.AddRelativeForce(Vector3.up * thrustForce * Time.fixedDeltaTime);
         }
     }
 }
