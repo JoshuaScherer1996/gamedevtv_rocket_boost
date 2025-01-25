@@ -6,17 +6,18 @@ public class Movement : MonoBehaviour
 {
     // Declaring the variables.
     [SerializeField] private InputAction thrust;
-
     [SerializeField] private InputAction rotation;
     [SerializeField] private float thrustForce = 1000.0f;
     [SerializeField] private float rotationForce = 250.0f;
 
     private Rigidbody rb;
+    private AudioSource audioSource;
 
     // Gets and assigns the necessary components.
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Event function that gets called everytime the object with script Movement is enabled.
@@ -35,13 +36,18 @@ public class Movement : MonoBehaviour
         ProcessRotation();
     }
 
-    // Method that propels the object upwards.
+    // Method that propels the object upwards and controls the audio.
     private void ProcessThrust()
     {
         if (thrust.IsPressed())
         {
             // Uses physics based movement.
             rb.AddRelativeForce(Vector3.up * thrustForce * Time.fixedDeltaTime);
+            PlaySound();
+        }
+        else
+        {
+            audioSource.Stop();
         }
     }
 
@@ -68,5 +74,14 @@ public class Movement : MonoBehaviour
         rb.freezeRotation = true;
         transform.Rotate(Vector3.forward * force * Time.fixedDeltaTime);
         rb.freezeRotation = false;
+    }
+
+    // Method starts the audio if it isn't playing already.
+    private void PlaySound()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
     }
 }
