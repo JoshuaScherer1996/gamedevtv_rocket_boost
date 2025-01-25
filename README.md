@@ -28,4 +28,5 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 23. Simple bug fixing like weird physic behaviours.
 24. Using dampening (formerly known as drag).
 25. Working with the physics settings inside the project settings.
-26. TBD
+26. Using the 3 components of audio: File, Source and Listener.
+27. TBD 
