@@ -21,4 +21,7 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 16. Learned more about child / parent relationships inside the hierarchy.
 17. Using pivot and center for the tool handle position.
 18. Using parameters in methods.
-19. TBD
+19. Learned about some settings for the game view like aspect ratio, resolution and maximised view.
+20. Learned about Update Method and Blend Update Method to prevent camera jittering.
+21. Using Cinemachine Posiion Composer.
+22. TBD
