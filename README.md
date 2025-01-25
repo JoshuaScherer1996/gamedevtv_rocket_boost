@@ -17,5 +17,8 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 12. Using relative force.
 13. Usage of the FixedUpdate lifecycle method.
 14. Difference between relative and local positions.
-15. Using Time.fixedDeltaTime
-16. TBD
+15. Using Time.fixedDeltaTime.
+16. Learned more about child / parent relationships inside the hierarchy.
+17. Using pivot and center for the tool handle position.
+18. Using parameters in methods.
+19. TBD
