@@ -24,4 +24,8 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 19. Learned about some settings for the game view like aspect ratio, resolution and maximised view.
 20. Learned about Update Method and Blend Update Method to prevent camera jittering.
 21. Using Cinemachine Posiion Composer.
-22. TBD
+22. Learned even more about prefabs, prefab variants and fbx prefabs.
+23. Simple bug fixing like weird physic behaviours.
+24. Using dampening (formerly known as drag).
+25. Working with the physics settings inside the project settings.
+26. TBD

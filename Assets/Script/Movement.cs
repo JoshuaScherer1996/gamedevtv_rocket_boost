@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -64,6 +65,8 @@ public class Movement : MonoBehaviour
     // Method that allows to adjust the rotation based on its parameter.
     private void ApplyRotation(float force)
     {
+        rb.freezeRotation = true;
         transform.Rotate(Vector3.forward * force * Time.fixedDeltaTime);
+        rb.freezeRotation = false;
     }
 }
