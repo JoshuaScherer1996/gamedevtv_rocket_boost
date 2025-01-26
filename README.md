@@ -30,4 +30,6 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 25. Working with the physics settings inside the project settings.
 26. Using the 3 components of audio: File, Source and Listener.
 27. Using isPlaying, Play and Stop.
-28. TBD
+28. Controling audio volume.
+29. Using switch statements.
+30. TBD
