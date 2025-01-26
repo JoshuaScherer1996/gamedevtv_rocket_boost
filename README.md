@@ -34,4 +34,8 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 29. Using switch statements.
 30. Introduction to scenes for level management.
 31. Using SceneManager methods for game logic.
-32. TBD
+32. Using the Invoke method for delays.
+33. Shotly touched on communication between scripts.
+34. Best practices for code structure.
+35. Used structure for variables: parameters -> cache -> state.
+36. TBD 
