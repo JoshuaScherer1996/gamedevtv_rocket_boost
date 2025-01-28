@@ -8,16 +8,24 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] private float delay = 2f;
     [SerializeField] private AudioClip crash;
     [SerializeField] private AudioClip success;
+
     private AudioSource audioSource;
+
+    bool isControllable = true;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        
     }
 
     // Switch statements uses the tag of the object we collided with.
     private void OnCollisionEnter(Collision other)
     {
+        // Immediately exits the function if the player isn't controllable.
+        if (!isControllable) { return; }
+
+
         switch (other.gameObject.tag)
         {
             case "Friendly":
@@ -40,6 +48,8 @@ public class CollisionHandler : MonoBehaviour
     // Method executes the NextLevel Method with a delay.
     private void StartSuccessSequence()
     {
+        ChangeControls();
+        audioSource.Stop();
         audioSource.PlayOneShot(success);
         GetComponent<Movement>().enabled = false;
         Invoke("NextLevel", delay);
@@ -48,6 +58,8 @@ public class CollisionHandler : MonoBehaviour
     // Method executes the ReloadLevel Method with a delay.
     private void StartCrashSequence()
     {
+        ChangeControls();
+        audioSource.Stop();
         audioSource.PlayOneShot(crash);
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", delay);
@@ -72,5 +84,11 @@ public class CollisionHandler : MonoBehaviour
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene);
+    }
+
+    // Method changes the controllable state for the user.
+    private void ChangeControls()
+    {
+        isControllable = !isControllable;
     }
 }
