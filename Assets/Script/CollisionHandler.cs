@@ -6,6 +6,14 @@ public class CollisionHandler : MonoBehaviour
 {
     // Declaring the variables.
     [SerializeField] private float delay = 2f;
+    [SerializeField] private AudioClip crash;
+    [SerializeField] private AudioClip success;
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     // Switch statements uses the tag of the object we collided with.
     private void OnCollisionEnter(Collision other)
@@ -32,6 +40,7 @@ public class CollisionHandler : MonoBehaviour
     // Method executes the NextLevel Method with a delay.
     private void StartSuccessSequence()
     {
+        audioSource.PlayOneShot(success);
         GetComponent<Movement>().enabled = false;
         Invoke("NextLevel", delay);
     }
@@ -39,6 +48,7 @@ public class CollisionHandler : MonoBehaviour
     // Method executes the ReloadLevel Method with a delay.
     private void StartCrashSequence()
     {
+        audioSource.PlayOneShot(crash);
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", delay);
     }
@@ -54,7 +64,6 @@ public class CollisionHandler : MonoBehaviour
         {
             nextScene = 0;
         }
-
         SceneManager.LoadScene(nextScene);
     }
 

@@ -38,4 +38,5 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 33. Shotly touched on communication between scripts.
 34. Best practices for code structure.
 35. Used structure for variables: parameters -> cache -> state.
-36. TBD 
+36. Using different audioclips with PlayOneShot
+37. TBD
