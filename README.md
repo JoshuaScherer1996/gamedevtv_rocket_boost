@@ -42,4 +42,10 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 37. Changing the skky with custom skyboxes.
 38. Customizing the directional light.
 39. Using bools as conditions.
-40. TBD
+40. Particles as game objects.
+41. Emitters as the source of the particles.
+42. Particle systems.
+43. Manipulating particles.
+44. Selecting and working on prefabs from the Hierarchy.
+45. Using methods to play the particles.
+46. TBD
