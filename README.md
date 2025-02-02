@@ -51,4 +51,5 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 46. Using logic operators.
 47. Creating debug keys for qucker debugging and testing.
 48. Using wasPressedThisFrame.
-49. TBD
+49. Using Mesh Colliders for more complex objects.
+50. TBD 
