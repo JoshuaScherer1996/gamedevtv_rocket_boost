@@ -52,4 +52,15 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 47. Creating debug keys for qucker debugging and testing.
 48. Using wasPressedThisFrame.
 49. Using Mesh Colliders for more complex objects.
-50. TBD 
+50. Designing immerive levels.
+51. Dressing the set properly.
+52. Using colors to communicate behaviour with the player.
+53. Manipulating the global volume.
+54. Manipulating Depth of Field.
+55. Implementing different types of lights.
+56. Main Directional light.
+57. Environment Lighting.
+58. Scene Lights.
+59. Player Light.
+60. Intro to light baking.
+61. TBD
