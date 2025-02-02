@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Handles collision events for the attached GameObject, including crash and success sequences.
@@ -18,6 +19,7 @@ public class CollisionHandler : MonoBehaviour
 
     // Declaring the states.
     bool isControllable = true;
+    bool isCollidable = true;
 
     /// <summary>
     /// Obtains the AudioSource reference on start.
@@ -25,7 +27,24 @@ public class CollisionHandler : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        
+
+    }
+
+    private void Update()
+    {
+        RespondToDebugKeys();
+    }
+
+    private void RespondToDebugKeys()
+    {
+        if (Keyboard.current.lKey.wasPressedThisFrame)
+        {
+            NextLevel();
+        }
+        else if (Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            isCollidable = !isCollidable;
+        }
     }
 
     /// <summary>
@@ -35,7 +54,7 @@ public class CollisionHandler : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         // Ignore collisions if controls are already disabled (e.g., after a crash or success).
-        if (!isControllable) { return; }
+        if (!isControllable || !isCollidable) { return; }
 
         switch (other.gameObject.tag)
         {

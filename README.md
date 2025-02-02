@@ -48,4 +48,7 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 43. Manipulating particles.
 44. Selecting and working on prefabs from the Hierarchy.
 45. Using methods to play the particles.
-46. TBD
+46. Using logic operators.
+47. Creating debug keys for qucker debugging and testing.
+48. Using wasPressedThisFrame.
+49. TBD
