@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Handles collision events for the attached GameObject, including crash and success sequences.
+/// </summary>
 public class CollisionHandler : MonoBehaviour
 {
     // Declaring the variables.
@@ -10,22 +13,29 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] private ParticleSystem crashParticles;
     [SerializeField] private ParticleSystem successParticles;
 
+    // Declaring the caches.
     private AudioSource audioSource;
 
+    // Declaring the states.
     bool isControllable = true;
 
+    /// <summary>
+    /// Obtains the AudioSource reference on start.
+    /// </summary>
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         
     }
 
-    // Switch statements uses the tag of the object we collided with.
+    /// <summary>
+    /// Determines the collision outcome based on the other object's tag.
+    /// </summary>
+    /// <param name="other">Collision data for the current collision event.</param>
     private void OnCollisionEnter(Collision other)
     {
-        // Immediately exits the function if the player isn't controllable.
+        // Ignore collisions if controls are already disabled (e.g., after a crash or success).
         if (!isControllable) { return; }
-
 
         switch (other.gameObject.tag)
         {
@@ -46,51 +56,69 @@ public class CollisionHandler : MonoBehaviour
         }
     }
 
-    // Method executes the NextLevel Method with a delay.
+    /// <summary>
+    /// Initiates the success sequence, stopping current audio and playing success effects.
+    /// </summary>
     private void StartSuccessSequence()
     {
-        ChangeControls();
+        ToggleControls();
         audioSource.Stop();
         audioSource.PlayOneShot(successSFX);
         successParticles.Play();
+
+        // Disable the movement script to prevent further control.
         GetComponent<Movement>().enabled = false;
+
+        // Load next level after a short delay.
         Invoke("NextLevel", delay);
     }
 
-    // Method executes the ReloadLevel Method with a delay.
+    /// <summary>
+    /// Initiates the crash sequence, stopping current audio and playing crash effects.
+    /// </summary>
     private void StartCrashSequence()
     {
-        ChangeControls();
+        ToggleControls();
         audioSource.Stop();
         audioSource.PlayOneShot(crashSFX);
         crashParticles.Play();
+
+        // Disable the movement script to prevent further control.
         GetComponent<Movement>().enabled = false;
+
+        // Reload current level after a short delay.
         Invoke("ReloadLevel", delay);
     }
 
-    // Method loads the next level based on the build index.
+    /// <summary>
+    /// Loads the next scene in the build index, or loops back to the first scene if at the last.
+    /// </summary>
     private void NextLevel()
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         int nextScene = ++currentScene;
 
-        // Resets the scene to the first one if the player finishes the last level.
         if (nextScene == SceneManager.sceneCountInBuildSettings)
         {
             nextScene = 0;
         }
+
         SceneManager.LoadScene(nextScene);
     }
 
-    // Method loads the current scene.
+    /// <summary>
+    /// Reloads the currently active scene.
+    /// </summary>
     private void ReloadLevel()
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene);
     }
 
-    // Method changes the controllable state for the user.
-    private void ChangeControls()
+    /// <summary>
+    /// Toggles whether the player can control the GameObject.
+    /// </summary>
+    private void ToggleControls()
     {
         isControllable = !isControllable;
     }

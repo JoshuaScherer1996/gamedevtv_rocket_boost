@@ -139,6 +139,7 @@ public class Movement : MonoBehaviour
     /// <summary>
     /// Temporarily prevents physics from altering rotation, applies rotation, then re-enables it.
     /// </summary>
+    /// <param name="force">The rotation force to be applied.</param>
     private void ApplyRotation(float force)
     {
         rb.freezeRotation = true;
