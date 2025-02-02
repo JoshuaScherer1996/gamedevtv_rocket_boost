@@ -46,15 +46,25 @@ public class Movement : MonoBehaviour
         if (thrust.IsPressed())
         {
             // Uses physics based movement.
-            rb.AddRelativeForce(Vector3.up * thrustForce * Time.fixedDeltaTime);
-            PlaySound();
-            mainBoosterParticles.Play();
+            StartThrusting();
         }
         else
         {
-            audioSource.Stop();
-            mainBoosterParticles.Stop();
+            StopThrusting();
         }
+    }
+
+    private void StopThrusting()
+    {
+        audioSource.Stop();
+        mainBoosterParticles.Stop();
+    }
+
+    private void StartThrusting()
+    {
+        rb.AddRelativeForce(Vector3.up * thrustForce * Time.fixedDeltaTime);
+        PlaySound();
+        mainBoosterParticles.Play();
     }
 
     // Method that rotates the object.
@@ -66,22 +76,37 @@ public class Movement : MonoBehaviour
         // Passes the necessary force as an argument based on the player input.
         if (rotationInput < 0)
         {
-            ApplyRotation(rotationForce);
-            leftBoosterParticles.Stop();
-            rightBoosterParticles.Play();
+            RotateLeft();
         }
         else if (rotationInput > 0)
+        {
+            RotateRight();
+        }
+        else
+        {
+            StopRotationParticles();
+        }        
+    }
+
+    private void StopRotationParticles()
+    {
+        leftBoosterParticles.Stop();
+        rightBoosterParticles.Stop();
+    }
+
+    private void RotateLeft()
+    {
+        ApplyRotation(rotationForce);
+        leftBoosterParticles.Stop();
+        rightBoosterParticles.Play();
+    }
+
+    private void RotateRight()
         {
             ApplyRotation(-rotationForce);
             rightBoosterParticles.Stop();
             leftBoosterParticles.Play();
         }
-        else
-        {
-            leftBoosterParticles.Stop();
-            rightBoosterParticles.Stop();
-        }
-    }
 
     // Method that allows to adjust the rotation based on its parameter.
     private void ApplyRotation(float force)
