@@ -10,6 +10,9 @@ public class Movement : MonoBehaviour
     [SerializeField] private float thrustForce = 1000.0f;
     [SerializeField] private float rotationForce = 250.0f;
     [SerializeField] private AudioClip mainEngine;
+    [SerializeField] private ParticleSystem mainBoosterParticles;
+    [SerializeField] private ParticleSystem leftBoosterParticles;
+    [SerializeField] private ParticleSystem rightBoosterParticles;
 
     private Rigidbody rb;
     private AudioSource audioSource;
@@ -45,10 +48,12 @@ public class Movement : MonoBehaviour
             // Uses physics based movement.
             rb.AddRelativeForce(Vector3.up * thrustForce * Time.fixedDeltaTime);
             PlaySound();
+            mainBoosterParticles.Play();
         }
         else
         {
             audioSource.Stop();
+            mainBoosterParticles.Stop();
         }
     }
 
@@ -62,10 +67,19 @@ public class Movement : MonoBehaviour
         if (rotationInput < 0)
         {
             ApplyRotation(rotationForce);
+            leftBoosterParticles.Stop();
+            rightBoosterParticles.Play();
         }
         else if (rotationInput > 0)
         {
             ApplyRotation(-rotationForce);
+            rightBoosterParticles.Stop();
+            leftBoosterParticles.Play();
+        }
+        else
+        {
+            leftBoosterParticles.Stop();
+            rightBoosterParticles.Stop();
         }
     }
 
