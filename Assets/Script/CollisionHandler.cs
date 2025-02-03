@@ -59,17 +59,13 @@ public class CollisionHandler : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Friendly":
-                Debug.Log("The object is friendly");
                 break;
             case "Fuel":
-                Debug.Log("The object is fuel");
                 break;
             case "Finish":
-                Debug.Log("The object is the finish line");
                 StartSuccessSequence();
                 break;
             default:
-                Debug.Log("You crashed");
                 StartCrashSequence();
                 break;
         }

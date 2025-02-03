@@ -66,3 +66,5 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 61. Using the [Mathf](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Mathf.html) library.
 62. Using method PingPong.
 63. Using method Lerp.
+64. Using Application.Quit().
+65. Building the game for different platforms.
