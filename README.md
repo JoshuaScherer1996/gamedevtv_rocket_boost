@@ -68,3 +68,4 @@ This repository contains the game I developed for the GameDev.Tv course C# 3D on
 63. Using method Lerp.
 64. Using Application.Quit().
 65. Building the game for different platforms.
+66. Publishing WebGL builds on platforms like [Unity Play](https://play.unity.com/en/user/1868c36e-08bf-4396-9bdd-81d0759a5ba7).

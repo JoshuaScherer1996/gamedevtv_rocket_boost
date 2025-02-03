@@ -7,19 +7,23 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class CollisionHandler : MonoBehaviour
 {
-    // Declaring the variables.
+    // General settings.
     [SerializeField] private float delay = 2f;
+
+    // Audio clips for collision events.
     [SerializeField] private AudioClip crashSFX;
     [SerializeField] private AudioClip successSFX;
+
+    // Particle systems for visual effects.
     [SerializeField] private ParticleSystem crashParticles;
     [SerializeField] private ParticleSystem successParticles;
 
-    // Declaring the caches.
+    // Cached component for audio playback.
     private AudioSource audioSource;
 
-    // Declaring the states.
-    bool isControllable = true;
-    bool isCollidable = true;
+     // State flags controlling collision handling.
+    bool isControllable = true; // Determines if the player can control the GameObject.
+    bool isCollidable = true;   // Determines if collisions should be processed.
 
     /// <summary>
     /// Obtains the AudioSource reference on start.
@@ -30,11 +34,19 @@ public class CollisionHandler : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Checks for debug key input on every frame.
+    /// </summary>
     private void Update()
     {
         RespondToDebugKeys();
     }
 
+    /// <summary>
+    /// Listens for debug key presses:
+    /// - "L" loads the next level.
+    /// - "C" toggles the collidability (useful for testing).
+    /// </summary>
     private void RespondToDebugKeys()
     {
         if (Keyboard.current.lKey.wasPressedThisFrame)
@@ -53,19 +65,23 @@ public class CollisionHandler : MonoBehaviour
     /// <param name="other">Collision data for the current collision event.</param>
     private void OnCollisionEnter(Collision other)
     {
-        // Ignore collisions if controls are already disabled (e.g., after a crash or success).
+        // Ignore collisions if controls are already disabled (e.g., after a crash or success) or collisions are turned off.
         if (!isControllable || !isCollidable) { return; }
 
         switch (other.gameObject.tag)
         {
             case "Friendly":
+                // No action required for friendly collisions.
                 break;
             case "Fuel":
+                // Fuel collisions are intentionally ignored. Could be implemented for later levels.
                 break;
             case "Finish":
+                // Trigger success sequence when reaching the finish line.
                 StartSuccessSequence();
                 break;
             default:
+                // Any other collision is treated as a crash.
                 StartCrashSequence();
                 break;
         }
@@ -76,12 +92,12 @@ public class CollisionHandler : MonoBehaviour
     /// </summary>
     private void StartSuccessSequence()
     {
-        ToggleControls();
-        audioSource.Stop();
-        audioSource.PlayOneShot(successSFX);
-        successParticles.Play();
+        ToggleControls();           // Disable further input to prevent interference.
+        audioSource.Stop();         // Stop any current audio.
+        audioSource.PlayOneShot(successSFX);    // Play the success sound effect.
+        successParticles.Play();    // Start success particle effects.
 
-        // Disable the movement script to prevent further control.
+        // Disable the Movement script to prevent further player control.
         GetComponent<Movement>().enabled = false;
 
         // Load next level after a short delay.
@@ -93,12 +109,12 @@ public class CollisionHandler : MonoBehaviour
     /// </summary>
     private void StartCrashSequence()
     {
-        ToggleControls();
-        audioSource.Stop();
-        audioSource.PlayOneShot(crashSFX);
-        crashParticles.Play();
+        ToggleControls();           // Disable further input to prevent interference.
+        audioSource.Stop();         // Stop any current audio.
+        audioSource.PlayOneShot(crashSFX);      // Play the crash sound effect.
+        crashParticles.Play();      // Start crash particle effects.
 
-        // Disable the movement script to prevent further control.
+        // Disable the movement script to prevent further player control.
         GetComponent<Movement>().enabled = false;
 
         // Reload current level after a short delay.
@@ -113,6 +129,7 @@ public class CollisionHandler : MonoBehaviour
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         int nextScene = ++currentScene;
 
+        // Loop back to the first scene if the next scene index exceeds build settings.
         if (nextScene == SceneManager.sceneCountInBuildSettings)
         {
             nextScene = 0;
